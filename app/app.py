@@ -120,16 +120,12 @@ def display_recommendations(recommended_movie_ids):
             # Display each movie in a separate column
             with columns[i]:
                 st.text(capitalize_sentence(title))
-                image_path = 'data/images/' + str(index) + '.jpg'
-                if os.path.exists(image_path):
-                    st.image(image_path, use_column_width=True)
-                else:
-                    try:
-                        st.image(get_image_from_tmdb(title), use_column_width=True)
-                    except Exception as e:
-                        print("Failed to load image")
-                        print(f"Error: {e}")    
-                        st.image('data/images/empty.jpg', use_column_width=True)
+                try:
+                    st.image(get_image_from_tmdb(title), use_column_width=True)
+                except Exception as e:
+                    print("Failed to load image")
+                    print(f"Error: {e}")    
+                    st.image('data/images/empty.jpg', use_column_width=True)
                 st.write("**Country:**", capitalize_sentence(country))
                 st.write("**Genre:**", capitalize_sentence(genre))
         else:
