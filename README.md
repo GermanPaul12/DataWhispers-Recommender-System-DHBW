@@ -54,3 +54,26 @@
     ``` bash
     pip install -r requirements.txt
     ```
+
+7. Change directory to the app
+
+    ``` bash
+    cd app/
+    ```
+
+8. Start the application
+
+    Linux or mac
+
+    ``` bash
+    streamlit run app.py & (cd backend && flask run --port=5000)
+    ```
+
+    Windows
+
+    1. Start the streamlit app
+        `streamlit run app.py`
+    2. Start the backend server
+        `cd backend && flask run --port=5000`
+
+9. The application should automatically open in the browser and you should be able to enjoy the app
