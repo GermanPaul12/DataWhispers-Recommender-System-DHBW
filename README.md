@@ -21,7 +21,7 @@
 
    [Large files link](https://stadsinitiative-my.sharepoint.com/:f:/g/personal/german_paul_stads_de/EohrgaWKqj1MiAwoA4b-QaUBQlr8Qta-gO0P4GAMqWa_zQ?e=edlDrd)
 3. Add the large files to the `data` directory
-4. Create a virtual environment
+4. Create a virtual environment:
 
     Linux or mac OS
 
@@ -36,6 +36,7 @@
     ```
 
 5. Activate the virtual environment
+
     Linux or mac OS
 
     ``` bash
