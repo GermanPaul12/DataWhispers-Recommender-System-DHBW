@@ -139,7 +139,7 @@ def display_recommendations(recommended_movie_ids):
 def get_image_from_tmdb(movie_name):
     headers = {
         "accept": "application/json",
-        "Authorization": f"Bearer {st.secrets['API_KEY']}"
+        "Authorization": f"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNjVmNWJlMTg0OWIwYTRhZWMyZTE2ZWVkOWE5OWI0YiIsInN1YiI6IjY2NTViYjUwMGMzZDA0NDAyMGEzNmE0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tRC-sEvBZFYg7c-Jqj5isV0o9wqRSbEbDQTbunHUS9Y"
     }
     print(st.secrets["API_KEY"])
     url = f"https://api.themoviedb.org/3/search/movie?query={movie_name}"
