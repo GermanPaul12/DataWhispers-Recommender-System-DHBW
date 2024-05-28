@@ -141,10 +141,9 @@ def get_image_from_tmdb(movie_name):
         "accept": "application/json",
         "Authorization": f"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNjVmNWJlMTg0OWIwYTRhZWMyZTE2ZWVkOWE5OWI0YiIsInN1YiI6IjY2NTViYjUwMGMzZDA0NDAyMGEzNmE0NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tRC-sEvBZFYg7c-Jqj5isV0o9wqRSbEbDQTbunHUS9Y"
     }
-    print(st.secrets["API_KEY"])
     url = f"https://api.themoviedb.org/3/search/movie?query={movie_name}"
     response = requests.get(url, headers=headers)
-    print(response.json())
+    #print(response.json())
     return f'https://image.tmdb.org/t/p/w185{response.json()["results"][0]["poster_path"]}'
 
 
