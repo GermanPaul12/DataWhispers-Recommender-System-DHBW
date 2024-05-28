@@ -1,3 +1,7 @@
 # Ignore Virtual Environment
 venv/
 dev/
+
+# Ignore large files; download here https://stadsinitiative-my.sharepoint.com/:f:/g/personal/german_paul_stads_de/EohrgaWKqj1MiAwoA4b-QaUBQlr8Qta-gO0P4GAMqWa_zQ?e=edlDrd
+similarity_bert.pkl
+similarity_tfidf.pkl
