@@ -20,7 +20,7 @@
 
    [Large files link](https://stadsinitiative-my.sharepoint.com/:f:/g/personal/german_paul_stads_de/EohrgaWKqj1MiAwoA4b-QaUBQlr8Qta-gO0P4GAMqWa_zQ?e=edlDrd)
 
-3. Execute `main.py` or the executable
+3. Execute `main.py` or the executable `main.exe`
 
 ## Setup from scratch
 
