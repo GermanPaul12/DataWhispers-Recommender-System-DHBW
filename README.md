@@ -12,30 +12,44 @@
 ## Setup
 
 1. clone the repository
-``` bash
-git clone https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW.git
-```
-2. Download the large files here: ![Large files link](https://stadsinitiative-my.sharepoint.com/:f:/g/personal/german_paul_stads_de/EohrgaWKqj1MiAwoA4b-QaUBQlr8Qta-gO0P4GAMqWa_zQ?e=edlDrd)
+
+    ``` bash
+    git clone https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW.git
+    ```
+
+2. Download the large files here:
+
+   [Large files link](https://stadsinitiative-my.sharepoint.com/:f:/g/personal/german_paul_stads_de/EohrgaWKqj1MiAwoA4b-QaUBQlr8Qta-gO0P4GAMqWa_zQ?e=edlDrd)
 3. Add the large files to the `data` directory
 4. Create a virtual environment
 
-``` Linux or mac OS
-python3 -m venv venv/
-```
+    Linux or mac OS
 
-``` Windows
-python3 -m venv venv/
-```
+    ``` bash
+    python3 -m venv venv/
+    ```
+
+    Windows
+
+    ``` bash
+    python -m venv venv/
+    ```
+
 5. Activate the virtual environment
+    Linux or mac OS
 
-``` Linux or mac OS
-source venv/bin/activate
-```
+    ``` bash
+    source venv/bin/activate
+    ```
 
-``` Windows
-.\venv\Scripts\Activate.ps1
-```
+    Windows
+
+    ``` bash
+    .\venv\Scripts\Activate.ps1
+    ```
+
 6. Install the dependencies
-```
-pip install -r requirements.txt
-```
+
+    ``` bash
+    pip install -r requirements.txt
+    ```
