@@ -35,3 +35,7 @@ source venv/bin/activate
 ``` Windows
 .\venv\Scripts\Activate.ps1
 ```
+6. Install the dependencies
+```
+pip install -r requirements.txt
+```
