@@ -124,11 +124,29 @@ def display_recommendations(recommended_movie_ids):
                 if os.path.exists(image_path):
                     st.image(image_path, use_column_width=True)
                 else:
-                    st.image('data/images/empty.jpg', use_column_width=True)
+                    try:
+                        st.image(get_image_from_tmdb(title), use_column_width=True)
+                    except Exception as e:
+                        print("Failed to load image")
+                        print(f"Error: {e}")    
+                        st.image('data/images/empty.jpg', use_column_width=True)
                 st.write("**Country:**", capitalize_sentence(country))
                 st.write("**Genre:**", capitalize_sentence(genre))
         else:
             st.write(f"Movie '{index}' not found in the dataset.")
+
+
+def get_image_from_tmdb(movie_name):
+    headers = {
+        "accept": "application/json",
+        "Authorization": f"Bearer {st.secrets['API_KEY']}"
+    }
+    print(st.secrets["API_KEY"])
+    url = f"https://api.themoviedb.org/3/search/movie?query={movie_name}"
+    response = requests.get(url, headers=headers)
+    print(response.json())
+    return f'https://image.tmdb.org/t/p/w185{response.json()["results"][0]["poster_path"]}'
+
 
 def capitalize_sentence(string):
     # Split the string into sentences
