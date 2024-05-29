@@ -23,9 +23,9 @@ st.markdown(
 @st.cache_data(show_spinner=True)
 def load_data():
     return {
-        'movies': pickle.load(open('/app/data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': pickle.load(open('/app/data/similarity_tfidf.pkl', 'rb')),
-        'similarity_bert': pickle.load(open('/app/data/similarity_bert.pkl', 'rb'))
+        'movies': pickle.load(open('./data/movie_list.pkl', 'rb')),
+        'similarity_tfidf': pickle.load(open('./data/similarity_tfidf.pkl', 'rb')),
+        'similarity_bert': pickle.load(open('./data/similarity_bert.pkl', 'rb'))
     }
 
 st.sidebar.title('Team 5')
@@ -125,7 +125,7 @@ def display_recommendations(recommended_movie_ids):
                 except Exception as e:
                     print("Failed to load image")
                     print(f"Error: {e}")    
-                    st.image('data/images/empty.jpg', use_column_width=True)
+                    st.image('./app/data/images/empty.jpg', use_column_width=True)
                 st.write("**Country:**", capitalize_sentence(country))
                 st.write("**Genre:**", capitalize_sentence(genre))
         else:
