@@ -11,8 +11,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 nltk.download('stopwords')
 def get_tfidf_model():
     # Read the CSV files
-    history_df = pd.read_csv('../data/netflix_history_preprocessed.csv')
-    titles_df = pd.read_csv('../data/netflix_titles_preprocessed.csv')
+    history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
+    titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
 
     # Convert string representation of list to actual list
     titles_df['director'] = titles_df['director'].apply(ast.literal_eval)
@@ -102,8 +102,8 @@ def get_tfidf_model():
     combined_scores = 50 * similarity_scores + 1 * overlap_director + 2 * overlap_cast + 0.5 * overlap_country + 2 * overlap_genre
     combined_scores = np.array(combined_scores, dtype=np.float32)
 
-    pickle.dump(combined_scores, open('../data/similarity_tfidf.pkl', 'wb'))
-    return pickle.load(open('../data/similarity_tfidf.pkl', 'rb'))
+    pickle.dump(combined_scores, open('./data/similarity_tfidf.pkl', 'wb'))
+    return pickle.load(open('./data/similarity_tfidf.pkl', 'rb'))
     
 if __name__ == '__main__':
     get_tfidf_model()
