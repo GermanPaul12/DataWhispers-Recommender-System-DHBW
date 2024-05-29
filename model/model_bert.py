@@ -51,32 +51,6 @@ def get_bert_model():
     descriptions_embeddings = model.encode(descriptions, convert_to_tensor=True)
     descriptions_similarity_scores = torch.matmul(descriptions_embeddings, descriptions_embeddings.T).cpu().numpy()
 
-    # Evaluation of the recommendation
-    def evaluate(similarity_scores, consider_history=False):
-        target_ranks = []
-        scores = np.zeros(similarity_scores.shape[0])
-        
-        for i in range(1, len(watch_history)):
-            target_title = watch_history[i]
-            target_row_index = titles_df.index[titles_df['title'] == target_title].tolist()[0]
-            prev_title = watch_history[i - 1]
-            prev_row_index = titles_df.index[titles_df['title'] == prev_title].tolist()[0]
-        
-            # Get recommendation based on the similarity
-            if consider_history:
-                scores = 1 / 2 * scores + 1 / 2 * similarity_scores[prev_row_index]
-            else:
-                scores = similarity_scores[prev_row_index]
-            recommendation_indices = sorted(range(len(scores)), key=lambda i: scores[i], reverse=True)
-            target_rank = recommendation_indices.index(target_row_index)
-            target_ranks.append(target_rank)
-        
-        print('Average rank:', np.mean(target_ranks))
-        print('Successful recommendations:', np.sum(np.array(target_ranks) <= 5))
-        
-    evaluate(descriptions_similarity_scores)
-    evaluate(descriptions_similarity_scores, True)
-
     metadata = []
 
     for index, row in titles_df.iterrows():
@@ -96,11 +70,6 @@ def get_bert_model():
         
     metadata_embeddings = model.encode(metadata, convert_to_tensor=True)
     metadata_similarity_scores = torch.matmul(metadata_embeddings, metadata_embeddings.T).cpu().numpy()
-
-    evaluate(metadata_similarity_scores)
-    evaluate(metadata_similarity_scores, True)
-    evaluate(descriptions_similarity_scores + metadata_similarity_scores)
-    evaluate(descriptions_similarity_scores + metadata_similarity_scores, True)
 
     pickle.dump(titles_df, open('./data/movie_list.pkl', 'wb'))
     pickle.dump(descriptions_similarity_scores + metadata_similarity_scores, open('./data/similarity_bert.pkl', 'wb'))
