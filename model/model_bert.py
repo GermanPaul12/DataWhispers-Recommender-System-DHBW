@@ -9,8 +9,8 @@ from sentence_transformers import SentenceTransformer
 
 def get_bert_model():
     # Read the CSV files
-    history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
-    titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
+    history_df = pd.read_csv('../data/netflix_history_preprocessed.csv')
+    titles_df = pd.read_csv('../data/netflix_titles_preprocessed.csv')
 
     # Convert string representation of list to actual list
     titles_df['director'] = titles_df['director'].apply(ast.literal_eval)
@@ -103,9 +103,9 @@ def get_bert_model():
     evaluate(descriptions_similarity_scores + metadata_similarity_scores, True)
 
     pickle.dump(titles_df, open('../data/movie_list.pkl', 'wb'))
-    pickle.dump(descriptions_similarity_scores + metadata_similarity_scores, open('./data/similarity_bert.pkl', 'wb'))
-    pickle.dump(descriptions_embeddings.cpu().numpy(), open('./data/descriptions_embeddings.pkl', 'wb'))
-    pickle.dump(metadata_embeddings.cpu().numpy(), open('./data/metadata_embeddings.pkl', 'wb'))
+    pickle.dump(descriptions_similarity_scores + metadata_similarity_scores, open('../data/similarity_bert.pkl', 'wb'))
+    pickle.dump(descriptions_embeddings.cpu().numpy(), open('../data/descriptions_embeddings.pkl', 'wb'))
+    pickle.dump(metadata_embeddings.cpu().numpy(), open('../data/metadata_embeddings.pkl', 'wb'))
 
 if __name__ == '__main__':
     get_bert_model()
