@@ -4,12 +4,18 @@ import requests
 import numpy as np
 import os
 from model.model_bert import get_bert_model
+from model.model_tfidf import get_tfidf_model
 st.set_page_config(layout="wide")
 
-if os.path.exists("./data/similarity_tfidf.pkl"): 
-    similarity_bert = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
+if os.path.exists("./data/similarity_bert.pkl"): 
+    similarity_bert = pickle.load(open(r'./data/similarity_bert.pkl', 'rb'))
 else: 
     similarity_bert = get_bert_model()
+    
+if os.path.exists("./data/similarity_tfidf.pkl"):
+    similarity_tfidf = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
+else:
+    similarity_tfidf = get_tfidf_model()    
 
 st.markdown(
     """
@@ -29,7 +35,7 @@ st.markdown(
 def load_data():
     return {
         'movies': pickle.load(open(r'./data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': None, #pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
+        'similarity_tfidf': similarity_tfidf,
         'similarity_bert': similarity_bert
                
     }
