@@ -3,8 +3,14 @@ import streamlit as st
 import requests
 import numpy as np
 import os
-
+from model_bert import get_bert_model
 st.set_page_config(layout="wide")
+
+if os.path.exists("./data/similarity_tfidf.pkl"): 
+    similarity_bert = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
+else: 
+    get_bert_model()
+    similarity_bert = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
 
 st.markdown(
     """
@@ -24,8 +30,9 @@ st.markdown(
 def load_data():
     return {
         'movies': pickle.load(open(r'./data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
-        'similarity_bert': pickle.load(open(r'./data/similarity_bert.pkl', 'rb'))
+        'similarity_tfidf': None, #pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
+        'similarity_bert': similarity_bert
+               
     }
 
 st.sidebar.title('Team 5')
