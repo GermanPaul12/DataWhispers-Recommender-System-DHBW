@@ -26,6 +26,19 @@ overlaps = history_titles_set.intersection(titles_set)
 en_history_df = history_df[history_df['Title'].isin(overlaps)]
 watch_history = en_history_df['Title'].to_list()
 
+# Flatten the list of actor names
+actor_names = [name for sublist in titles_df['cast'] for name in sublist]
+
+# Count the occurrences of each actor name
+name_counts = Counter(actor_names)
+
+def keep_top_three_actors(actor_list):
+    if len(actor_list) == 0:
+        return []
+    # Keep only the top k most frequent actors
+    actor_list.sort(key=lambda x: name_counts[x], reverse=True)
+    return actor_list[:3]
+
 titles_df['cast'] = titles_df['cast'].apply(keep_top_three_actors)
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
