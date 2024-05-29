@@ -9,8 +9,8 @@ from sentence_transformers import SentenceTransformer
 
 def get_bert_model():
     # Read the CSV files
-    history_df = pd.read_csv('../data/netflix_history_preprocessed.csv')
-    titles_df = pd.read_csv('../data/netflix_titles_preprocessed.csv')
+    history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
+    titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
 
     # Convert string representation of list to actual list
     titles_df['director'] = titles_df['director'].apply(ast.literal_eval)
