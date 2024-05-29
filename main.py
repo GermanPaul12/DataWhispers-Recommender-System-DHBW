@@ -2,7 +2,7 @@ import platform
 import subprocess
 if platform.system == "Windows":
     subprocess.run("python -m venv venv/")
-    subprocess.run(".\venv\Scripts\Activate.ps1")
+    subprocess.run(r".\venv\Scripts\Activate.ps1")
     subprocess.run("pip install -r requirements.txt")
     subprocess.run("cd app/")
     subprocess.run("streamlit run app.py")
