@@ -9,8 +9,7 @@ st.set_page_config(layout="wide")
 if os.path.exists("./data/similarity_tfidf.pkl"): 
     similarity_bert = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
 else: 
-    get_bert_model()
-    similarity_bert = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
+    similarity_bert = get_bert_model()
 
 st.markdown(
     """

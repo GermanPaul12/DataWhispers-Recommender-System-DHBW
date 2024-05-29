@@ -106,6 +106,7 @@ def get_bert_model():
     pickle.dump(descriptions_similarity_scores + metadata_similarity_scores, open('./data/similarity_bert.pkl', 'wb'))
     pickle.dump(descriptions_embeddings.cpu().numpy(), open('./data/descriptions_embeddings.pkl', 'wb'))
     pickle.dump(metadata_embeddings.cpu().numpy(), open('./data/metadata_embeddings.pkl', 'wb'))
-
+    print(os.system("ls"))
+    return pickle.load(open('./data/similarity_bert.pkl', 'rb'))
 if __name__ == '__main__':
     get_bert_model()
