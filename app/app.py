@@ -125,7 +125,7 @@ def display_recommendations(recommended_movie_ids):
                 except Exception as e:
                     print("Failed to load image")
                     print(f"Error: {e}")    
-                    st.image('./app/data/images/empty.jpg', use_column_width=True)
+                    st.image('./data/images/empty.jpg', use_column_width=True)
                 st.write("**Country:**", capitalize_sentence(country))
                 st.write("**Genre:**", capitalize_sentence(genre))
         else:
