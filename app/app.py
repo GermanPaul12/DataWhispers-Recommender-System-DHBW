@@ -30,8 +30,8 @@ st.markdown(
 def load_data():
     return {
         'movies': pickle.load(open(r'./data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': None, #pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
-        'similarity_bert': similarity_bert
+        'similarity_tfidf': pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
+        'similarity_bert': pickle.load(open(r'./data/similarity_bert.pkl', 'rb')),
                
     }
 
