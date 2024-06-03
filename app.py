@@ -173,6 +173,7 @@ def generate_recommendation(movie_prompt):
 def main():
     global embed_type
     
+
     page = st.sidebar.selectbox(
         "Method type",
         ["Selection", "Prompt"]
