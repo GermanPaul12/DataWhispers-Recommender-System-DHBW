@@ -161,10 +161,10 @@ def display_admin_page():
     st.subheader("You can retrain the model by providing weights")
 
     description_weight = int(st.slider("Description weight: (default: 50)", 0, 100, 50, 1, format="%d", key="description_weight"))
-    director_weight = int(st.slider("Director weight: (default: 2)", 0, 50, 2, 1, format="%df", key="director_weight"))
-    cast_weight = int(st.slider("Cast weight: (default: 3)", 0, 50, 3, 1, format="%df", key="cast_weight"))
-    country_weight = int(st.slider("Country weight: (default: 1)", 0, 50, 1, 1, format="%df", key="country_weight"))
-    genre_weight = int(st.slider("Genre weight: (default: 3)", 0, 50, 3, 1, format="%df", key="genre_weight"))
+    director_weight = int(st.slider("Director weight: (default: 2)", 0, 50, 2, 1, format="%d", key="director_weight"))
+    cast_weight = int(st.slider("Cast weight: (default: 3)", 0, 50, 3, 1, format="%d", key="cast_weight"))
+    country_weight = int(st.slider("Country weight: (default: 1)", 0, 50, 1, 1, format="%d", key="country_weight"))
+    genre_weight = int(st.slider("Genre weight: (default: 3)", 0, 50, 3, 1, format="%d", key="genre_weight"))
     
     if st.button("Retrain model"):
         train_model(description_weight, director_weight, cast_weight, country_weight, genre_weight)
@@ -177,7 +177,6 @@ def train_model(description_weight, director_weight, cast_weight, country_weight
 def main():
     global embed_type
     
-
     page = st.sidebar.selectbox(
         "Method type",
         ["Selection", "Admin"]
