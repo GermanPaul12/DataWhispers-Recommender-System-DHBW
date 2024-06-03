@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 nltk.download('stopwords')
-def get_tfidf_model():
+def get_tfidf_model(description_weight, director_weight, cast_weight, country_weight, genre_weight):
     # Read the CSV files
     history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
     titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
@@ -100,7 +100,7 @@ def get_tfidf_model():
     overlap_country = create_overlap_matrix('country')
     overlap_genre = create_overlap_matrix('listed_in')
 
-    description_weight, director_weight, cast_weight, country_weight, genre_weight = [weights_df[col] for col in "description,director,cast,country,genre".split(",")]
+    
     # Combine similarity scores, director overlap, cast overlap, country overlap, and genre overlap
     combined_scores = description_weight * similarity_scores + director_weight * overlap_director + cast_weight * overlap_cast + country_weight * overlap_country + genre_weight * overlap_genre
     combined_scores = np.array(combined_scores, dtype=np.float32)

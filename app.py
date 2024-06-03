@@ -4,6 +4,7 @@ import requests
 import numpy as np
 st.set_page_config(layout="wide")
 
+from model import model_tfidf
 
 st.markdown(
     """
@@ -154,21 +155,24 @@ def capitalize_sentence(string):
     return ' '.join(capitalized_sentences)
 
 # Display content based on the selected page
-def display_prompt_page():
-    st.header("Movie Recommender System - Prompt")
+def display_admin_page():
+    st.header("Movie Recommender System - Admin Page")
+    
+    st.subheader("You can retrain the model by providing weights")
 
-    movie_prompt = st.text_area("Describe your ideal movie", value="", height=200)
-
-    if st.button('Show Recommendation'):
-        with st.spinner("Generating recommendation..."):
-            generate_recommendation(movie_prompt)
-
-# Generate recommendation using GPT model and display embedding
-def generate_recommendation(movie_prompt):    
-        response = requests.post("http://localhost:5000/embed", json={"prompt": movie_prompt})
-        recommended_movies = response.json()["recommended_movie_ids"]
-        display_recommendations(recommended_movies)
-
+    description_weight = int(st.slider("Description weight: (default: 50)", 0, 100, 50, 1, format="%d", key="description_weight"))
+    director_weight = float(st.slider("Director weight: (default: 1)", 0, 50, 1, 0.5, format="%.1f", key="director_weight"))
+    cast_weight = float(st.slider("Cast weight: (default: 30)", 0, 100, 30, 1, format="%.1f", key="cast_weight"))
+    country_weight = float(st.slider("Country weight: (default: 5)", 0, 100, 5, 1, format="%.1f", key="country_weight"))
+    genre_weight = float(st.slider("Genre weight: (default: 10)", 0, 100, 10, 1, format="%.1f", key="genre_weight"))
+    
+    if st.button("Retrain model"):
+        train_model(description_weight, director_weight, cast_weight, country_weight, genre_weight)
+        
+def train_model(description_weight, director_weight, cast_weight, country_weight, genre_weight):
+    with st.spinner("Retraining tfidf model..."):
+        data["similarity_tfidf"] = model_tfidf.get_tfidf_model(description_weight, director_weight, cast_weight, country_weight, genre_weight)        
+    st.info("Model is retrained and is using the new weights. You can change back to the main page.")
 # Main function to display selected page
 def main():
     global embed_type
@@ -176,13 +180,13 @@ def main():
 
     page = st.sidebar.selectbox(
         "Method type",
-        ["Selection", "Prompt"]
+        ["Selection", "Admin"]
     )
 
     if page == "Selection":
         display_selection_page()
-    elif page == "Prompt":
-        display_prompt_page()
+    elif page == "Admin":
+        display_admin_page()
 
 # Run the app
 if __name__ == "__main__":
