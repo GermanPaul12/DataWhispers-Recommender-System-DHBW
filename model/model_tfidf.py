@@ -9,7 +9,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
 nltk.download('stopwords')
-def get_tfidf_model(description_weight, director_weight, cast_weight, country_weight, genre_weight):
+def get_tfidf_model(description_weight=50, director_weight=2, cast_weight=3, country_weight=1, genre_weight=3):
     # Read the CSV files
     history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
     titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
