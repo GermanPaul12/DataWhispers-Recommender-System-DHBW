@@ -8,7 +8,9 @@ from collections import Counter
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+nltk.download('punkt')
 nltk.download('stopwords')
+
 def get_model():
     # Read the CSV files
     history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')

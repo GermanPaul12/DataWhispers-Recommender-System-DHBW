@@ -3,11 +3,15 @@ import streamlit as st
 import requests
 import numpy as np
 from os import path
+import nltk
 
 import model_bert
 import model_tfidf
 
 st.set_page_config(layout="wide")
+
+nltk.download('punkt')
+nltk.download('stopwords')
 
 st.markdown(
     """
