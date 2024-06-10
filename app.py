@@ -25,7 +25,7 @@ st.markdown(
 def load_data():
     return {
         'movies': pickle.load(open(r'./data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': load_model("tfidf", "https://drive.google.com/file/d/13KnfRHvo77rYwaOEPL5OjyjFQyKgaI-2/view?usp=drive_link") pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
+        'similarity_tfidf': load_model("tfidf", "https://drive.google.com/file/d/13KnfRHvo77rYwaOEPL5OjyjFQyKgaI-2/view?usp=drive_link"),
         'similarity_bert': pickle.load(open(r'./data/similarity_bert.pkl', 'rb'))
                
     }
@@ -82,7 +82,7 @@ def load_model(MODEL, location):
             from GD_download import download_file_from_google_drive
             download_file_from_google_drive(location, f_checkpoint)
     
-    model = pickle.load(f_checkpoint)
+    model = pickle.load(f_checkpoint, "rb")
     return model
 
 
