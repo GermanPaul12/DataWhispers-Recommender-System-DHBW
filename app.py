@@ -25,7 +25,7 @@ st.markdown(
 def load_data():
     return {
         'movies': pickle.load(open(r'./data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
+        'similarity_tfidf': load_model("tfidf", "https://drive.google.com/file/d/13KnfRHvo77rYwaOEPL5OjyjFQyKgaI-2/view?usp=drive_link") pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
         'similarity_bert': pickle.load(open(r'./data/similarity_bert.pkl', 'rb'))
                
     }
@@ -70,7 +70,7 @@ def recommend(movie, use_history):
     return recommended_movie_ids
 
 @st.cache
-def load_model(MODEL):
+def load_model(MODEL, location):
 
     save_dest = Path('data')
     save_dest.mkdir(exist_ok=True)
@@ -80,10 +80,9 @@ def load_model(MODEL):
     if not f_checkpoint.exists():
         with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
             from GD_download import download_file_from_google_drive
-            download_file_from_google_drive(cloud_model_location, f_checkpoint)
+            download_file_from_google_drive(location, f_checkpoint)
     
     model = pickle.load(f_checkpoint)
-    model.eval()
     return model
 
 
