@@ -1,6 +1,7 @@
 numpy==1.26.4
 Requests==2.32.2
+torchvision
+torch==2.3.1
 sentence_transformers==2.7.0
 setuptools==58.1.0
 streamlit==1.23.1
-torch==2.3.1
