@@ -2,15 +2,8 @@ import pickle
 import streamlit as st
 import requests
 import numpy as np
-import os
-from model_bert import get_bert_model
-st.set_page_config(layout="wide")
 
-if os.path.exists("./data/similarity_tfidf.pkl"): 
-    similarity_bert = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
-else: 
-    get_bert_model()
-    similarity_bert = pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb'))
+st.set_page_config(layout="wide")
 
 st.markdown(
     """

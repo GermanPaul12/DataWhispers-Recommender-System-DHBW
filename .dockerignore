@@ -1,0 +1,10 @@
+Dockerfile
+__pycache__/
+.venv/
+model/
+README.md
+secrets.toml
+.streamlit/
+*.ipynb
+*.csv
+./requirements.txt
