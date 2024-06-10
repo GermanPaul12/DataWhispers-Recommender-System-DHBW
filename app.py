@@ -20,29 +20,13 @@ st.markdown(
     unsafe_allow_html=True  # Allow HTML tags in Markdown
 )
 
-@st.cache
-def load_model(MODEL, location):
-
-    save_dest = Path('data')
-    save_dest.mkdir(exist_ok=True)
-    
-    f_checkpoint = Path(f"data/{MODEL}.pkl")
-
-    if not f_checkpoint.exists():
-        with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
-            from GD_download import download_file_from_google_drive
-            download_file_from_google_drive(location, f_checkpoint)
-    
-    model = pickle.load(f_checkpoint, "rb")
-    return model
-
 
 # Load data using st.cache_data to prevent reloading on every run
 @st.cache_data(show_spinner=True)
 def load_data():
     return {
         'movies': pickle.load(open(r'./data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': load_model("tfidf", "https://drive.google.com/file/d/13KnfRHvo77rYwaOEPL5OjyjFQyKgaI-2/view?usp=drive_link"),
+        'similarity_tfidf': pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
         'similarity_bert': pickle.load(open(r'./data/similarity_bert.pkl', 'rb'))
                
     }
