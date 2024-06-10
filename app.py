@@ -2,6 +2,7 @@ import pickle
 import streamlit as st
 import requests
 import numpy as np
+from pathlib import Path
 st.set_page_config(layout="wide")
 
 from model import model_tfidf
@@ -67,6 +68,23 @@ def recommend(movie, use_history):
                 break
             
     return recommended_movie_ids
+
+@st.cache
+def load_model(MODEL):
+
+    save_dest = Path('data')
+    save_dest.mkdir(exist_ok=True)
+    
+    f_checkpoint = Path(f"data/{MODEL}.pkl")
+
+    if not f_checkpoint.exists():
+        with st.spinner("Downloading model... this may take awhile! \n Don't stop it!"):
+            from GD_download import download_file_from_google_drive
+            download_file_from_google_drive(cloud_model_location, f_checkpoint)
+    
+    model = pickle.load(f_checkpoint)
+    model.eval()
+    return model
 
 
 def display_selection_page():
