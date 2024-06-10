@@ -2,6 +2,10 @@ import pickle
 import streamlit as st
 import requests
 import numpy as np
+from os import path
+
+import model_bert
+import model_tfidf
 
 st.set_page_config(layout="wide")
 
@@ -17,15 +21,28 @@ st.markdown(
     """,
     unsafe_allow_html=True  # Allow HTML tags in Markdown
 )
+    
+def load_models(model):
+    if path.exists(f"./data/similarity_{model}.pkl"):
+        return pickle.load(open(f'./data/similarity_{model}.pkl', 'rb'))
+    else:
+        with st.spinner('Wait for models to train...'):
+            model_tfidf.get_model()
+            model_bert.get_model()
+        if model == "tfidf": load_models("tfidf")
+        elif model == "bert": load_models("bert")
+
+# Initialize models if needed
+load_models("tfidf")
+load_models("bert")
 
 # Load data using st.cache_data to prevent reloading on every run
 @st.cache_data(show_spinner=True)
 def load_data():
     return {
         'movies': pickle.load(open(r'./data/movie_list.pkl', 'rb')),
-        'similarity_tfidf': pickle.load(open(r'./data/similarity_tfidf.pkl', 'rb')),
-        'similarity_bert': pickle.load(open(r'./data/similarity_bert.pkl', 'rb')),
-               
+        'similarity_tfidf': load_models("tfidf"),
+        'similarity_bert': load_models("bert"),       
     }
 
 st.sidebar.title('Team 5')
@@ -66,7 +83,7 @@ def recommend(movie, use_history):
                 break
             
     return recommended_movie_ids
-
+        
 
 def display_selection_page():
     st.header('Movie Recommender System - Selection')

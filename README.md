@@ -8,19 +8,12 @@
 - Bert and Scikit: For the models
 - EDA and Preprocessing: Pandas
 
-## Setup with provided executable
+## View of cloud-hosted web-app
 
-1. clone the repository
+It will load longer since the models will be trained from scratch.
+Estimated time: 4mins
 
-    ``` bash
-    git clone https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW.git
-    ```
 
-2. Download the large files here:
-
-   [Large files link](https://stadsinitiative-my.sharepoint.com/:f:/g/personal/german_paul_stads_de/EohrgaWKqj1MiAwoA4b-QaUBQlr8Qta-gO0P4GAMqWa_zQ?e=edlDrd)
-
-3. Execute `main.py` or the executable `main.exe`
 
 ## Setup from scratch
 
@@ -76,17 +69,8 @@
 
 8. Start the application
 
-    Linux or mac
-
     ``` bash
-    streamlit run app.py & (cd backend && flask run --port=5000)
+    streamlit run app/app.py 
     ```
 
-    Windows
-
-    1. Start the streamlit app
-        `streamlit run app.py`
-    2. Start the backend server
-        `cd backend && flask run --port=5000`
-
-9. The application should automatically open in the browser and you should be able to enjoy the app
+9. View the web-app at http://localhost:8501/
