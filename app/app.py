@@ -2,6 +2,7 @@ import pickle
 import streamlit as st
 import requests
 import numpy as np
+from PIL import Image
 from os import path
 
 import model_bert
@@ -9,18 +10,30 @@ import model_tfidf
 
 st.set_page_config(layout="wide")
 
-st.markdown(
-    """
-    <style>
-    /* Hide the scrollbar but keep scrolling functionality */
-    ::-webkit-scrollbar {
-        width: 0px;
-        background: transparent; /* Make the scrollbar transparent */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True  # Allow HTML tags in Markdown
-)
+streamlit_style = """
+			<style>
+            /* Hide the scrollbar but keep scrolling functionality */
+            ::-webkit-scrollbar {
+                width: 0px;
+                background: transparent; /* Make the scrollbar transparent */
+            }
+   
+			@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+			html, body, [class*="css"]  {
+			font-family: 'Monserrat', sans-serif;
+			}
+   
+            .info {
+                font-size:24px !important;
+            }
+            .movie-title {
+                font-size:30px !important;
+                font-weight: bold;
+            }
+			</style>
+			"""
+st.markdown(streamlit_style, unsafe_allow_html=True)
     
 def load_models(model):
     if path.exists(f"./data/similarity_{model}.pkl"):
@@ -45,6 +58,8 @@ def load_data():
         'similarity_bert': load_models("bert"),       
     }
 
+NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
+st.sidebar.image(NETFLIX_LOGO)
 st.sidebar.title('Team 5')
 
 # Load data
@@ -86,26 +101,48 @@ def recommend(movie, use_history):
         
 
 def display_selection_page():
-    st.header('Movie Recommender System - Selection')
+    st.title('Movie Recommender System - Data Exploration')
 
     global embed_type
     embed_type = st.sidebar.selectbox(
         'Embedding type:',
         ['TF-IDF', 'BERT']
     )
-    
-    use_history = st.checkbox("Use multiple histories")
+    with st.container():
+        col1,col2 = st.columns([2,1])
+        with col1:
+            with st.container(border=True):
+                use_history = st.checkbox("Use multiple histories (save watched movies and recommend considering all movies watched)")
 
-    movie_list = movies['title'].values
-    selected_movie = st.selectbox(
-        "Type or select a movie from the dropdown",
-        movie_list 
-    )
-
-    if st.button('Show Recommendation'):
+                movie_list = movies['title'].values
+                selected_movie = st.selectbox(
+                    "Type or select a movie from the dropdown",
+                    movie_list 
+                )
+                generate_recommendation_btn = st.button('Show Recommendation')
+            if selected_movie in movies["title"].values:
+                movie = movies[movies["title"] == selected_movie]
+                director = ', '.join(movie.iloc[0]['director']) if movie.iloc[0]['director'] else "-"
+                cast = ', '.join(movie.iloc[0]['cast']) if movie.iloc[0]['cast'] else "-"
+                genre = ', '.join(movie.iloc[0]['listed_in']) if movie.iloc[0]['listed_in'] else "-"
+                country = ', '.join(movie.iloc[0]['country']) if movie.iloc[0]['country'] else "-"
+                release = movie.iloc[0]['release_year'] if movie.iloc[0]['release_year'] else "-"
+                with st.container(border=True):
+                    st.markdown(f'<p class="info">Chosen Movie or Show :</p><br>', unsafe_allow_html=True)
+                    st.header(capitalize_sentence(selected_movie))
+                    st.markdown(f'<p class="info">Director: {capitalize_sentence(director)}</p>', unsafe_allow_html=True)  
+                    st.markdown(f'<p class="info">Country: {capitalize_sentence(country)}</p>', unsafe_allow_html=True)    
+                    st.markdown(f'<p class="info">Genre: {capitalize_sentence(genre)}</p>', unsafe_allow_html=True)
+            with st.container(border=True):
+                st.title("🔻 Recommendation will be shown below 🔻")
+        with col2:
+            if selected_movie in movies["title"].values:
+                st.image(get_image_from_tmdb(selected_movie), use_column_width=True)
+        
+    if generate_recommendation_btn:
         recommended_movie_ids = recommend(selected_movie, use_history)
         display_recommendations(recommended_movie_ids)
-
+    
     if st.session_state.watched_movies:
         display_watched_movies()
 
@@ -122,7 +159,9 @@ def display_watched_movies():
 # Display movie recommendations
 def display_recommendations(recommended_movie_ids):
     
+    titles = st.columns(5)
     columns = st.columns(5)
+    info = st.columns(5)
 
     for i, index in enumerate(recommended_movie_ids):
         movie = movies.iloc[index]
@@ -134,17 +173,19 @@ def display_recommendations(recommended_movie_ids):
             country = ', '.join(movie['country']) if movie['country'] else "-"
             release = movie['release_year'] if movie['release_year'] else "-"
 
+            with titles[i]: st.title(capitalize_sentence(title))
             # Display each movie in a separate column
             with columns[i]:
-                st.text(capitalize_sentence(title))
                 try:
                     st.image(get_image_from_tmdb(title), use_column_width=True)
                 except Exception as e:
                     print("Failed to load image")
                     print(f"Error: {e}")    
                     st.image('./data/images/empty.jpg', use_column_width=True)
-                st.write("**Country:**", capitalize_sentence(country))
-                st.write("**Genre:**", capitalize_sentence(genre))
+            with info[i]:      
+                st.markdown(f'<p class="info">Director: {capitalize_sentence(director)}</p>', unsafe_allow_html=True)  
+                st.markdown(f'<p class="info">Country: {capitalize_sentence(country)}</p>', unsafe_allow_html=True)    
+                st.markdown(f'<p class="info">Genre: {capitalize_sentence(genre)}</p>', unsafe_allow_html=True)
         else:
             st.write(f"Movie '{index}' not found in the dataset.")
 
@@ -170,16 +211,6 @@ def capitalize_sentence(string):
     # Join the capitalized sentences back into a single string
     return ' '.join(capitalized_sentences)
 
-# Display content based on the selected page
-def display_prompt_page():
-    st.header("Movie Recommender System - Prompt")
-
-    movie_prompt = st.text_area("Describe your ideal movie", value="", height=200)
-
-    if st.button('Show Recommendation'):
-        with st.spinner("Generating recommendation..."):
-            generate_recommendation(movie_prompt)
-
 # Generate recommendation using GPT model and display embedding
 def generate_recommendation(movie_prompt):    
         response = requests.post("http://localhost:5000/embed", json={"prompt": movie_prompt})
@@ -189,16 +220,7 @@ def generate_recommendation(movie_prompt):
 # Main function to display selected page
 def main():
     global embed_type
-    
-    page = st.sidebar.selectbox(
-        "Method type",
-        ["Selection", "Prompt"]
-    )
-
-    if page == "Selection":
-        display_selection_page()
-    elif page == "Prompt":
-        display_prompt_page()
+    display_selection_page()
 
 # Run the app
 if __name__ == "__main__":
