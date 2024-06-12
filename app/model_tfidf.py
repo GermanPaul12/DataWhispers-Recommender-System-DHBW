@@ -15,6 +15,7 @@ class ModelTfidf:
         self.history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
         self.titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
         self.combined_scores = None
+        self.name_counts = None
     
     def download_nltk_data(self):
         nltk.download('punkt')
@@ -47,7 +48,7 @@ class ModelTfidf:
         actor_names = [name for sublist in self.titles_df['cast'] for name in sublist]
 
         # Count the occurrences of each actor name
-        name_counts = Counter(actor_names)
+        self.name_counts = Counter(actor_names)
         
         self.titles_df['cast'] = self.titles_df['cast'].apply(self.keep_top_three_actors)
     
