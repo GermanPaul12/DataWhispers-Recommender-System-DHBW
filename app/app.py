@@ -47,24 +47,23 @@ streamlit_style = """
 st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
-@st.cache_data(show_spinner=True)
 def load_tfidf():
     if path.exists(f"./data/similarity_tfidf.pkl"):
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
         ModelCreator().join_pkl("./data/model/", f"./data/similarity_tfidf.pkl", read_size=99000000, PARTS=[f"tfidf_model{i}" for i in range(1,4)])
         
-
-@st.cache_data(show_spinner=True)
+        
 def load_bert():
     if path.exists(f"./data/similarity_bert.pkl"):
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
         ModelCreator().join_pkl("./data/model/", f"./data/similarity_bert.pkl", read_size=99000000, PARTS=[f"bert_model{i}" for i in range(1,4)])
 
-@st.cache_data(show_spinner=True)
+
 def load_movies():
     return pickle.load(open(r'./data/movie_list.pkl', 'rb'))   
+
 
 NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
 st.sidebar.image(NETFLIX_LOGO)
@@ -74,10 +73,11 @@ if st.session_state.show_vid and False:
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
 
 # Initialize models if needed
-load_bert()
 load_tfidf()
+load_bert()
 
 # Load data using st.cache_data to prevent reloading on every run
+@st.cache_data(show_spinner=True)
 def load_data():
     return {
         'movies': load_movies(),
