@@ -8,7 +8,9 @@ import time
 
 from model_pickle_creator import ModelCreator
 
-st.set_page_config(layout="wide")
+
+NETFLIX_SYMBOL = Image.open("./data/images/Netflix_Symbol_RGB.png")
+st.set_page_config(page_title="Recommender System",page_icon=NETFLIX_SYMBOL , layout="wide")
 
 
 if 'run_button' in st.session_state and st.session_state.run_button == True:
