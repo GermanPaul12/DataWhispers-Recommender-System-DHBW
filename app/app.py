@@ -6,8 +6,8 @@ from PIL import Image
 from os import path
 import time
 
-import model_bert
-import model_tfidf
+from model_bert import ModelBert
+from model_tfidf import ModelTfidf
 
 st.set_page_config(layout="wide")
 
@@ -53,16 +53,30 @@ def load_tfidf():
     if path.exists(f"./data/similarity_tfidf.pkl"):
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
-        with st.spinner('Wait for models to train...'):
-            model_tfidf.get_model()           
+        model_tfidf = ModelTfidf()
+        with st.spinner('Wait for nltk data to download...'):
+            model_tfidf.download_nltk_data()
+        with st.spinner("Wait for text to be preprocessed"):
+            model_tfidf.preprocess_text()  
+        with st.spinner("Wait for cosine similarity to be calculated..."):
+            model_tfidf.calc_cosine_similarity()
+        with st.spinner("Wait for pickle file to be created..."):
+            model_tfidf.dump_pickle_file()          
 
 @st.cache_data(show_spinner=True)
 def load_bert():
     if path.exists(f"./data/similarity_bert.pkl"):
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
-        with st.spinner('Wait for models to train...'):
-            model_bert.get_model()     
+        model_bert = ModelBert()
+        with st.spinner("Wait for text to be preprocessed"):
+            model_bert.preprocess_text()  
+        with st.spinner("Wait for cosine similarity to be calculated..."):
+            model_bert.get_similarity_scores()
+        with st.spinner("Wait for Metadata to be generated..."):    
+            model_bert.generate_metadata()  
+        with st.spinner("Wait for pickle file to be created..."):
+            model_bert.dump_pickle_files() 
 
 
 @st.cache_data(show_spinner=True)
