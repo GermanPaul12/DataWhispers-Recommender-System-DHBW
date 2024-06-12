@@ -53,7 +53,6 @@ def load_tfidf():
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
         ModelCreator().join_pkl("./data/model/", f"./data/similarity_tfidf.pkl", read_size=99000000, PARTS=[f"tfidf_model{i}" for i in range(1,4)])
-    load_tfidf()
         
 
 @st.cache_data(show_spinner=True)
@@ -62,7 +61,6 @@ def load_bert():
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
         ModelCreator().join_pkl("./data/model/", f"./data/similarity_bert.pkl", read_size=99000000, PARTS=[f"bert_model{i}" for i in range(1,4)])
-    load_bert()
 
 @st.cache_data(show_spinner=True)
 def load_movies():
@@ -76,8 +74,8 @@ if st.session_state.show_vid and False:
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
 
 # Initialize models if needed
-#load_bert()
-#load_tfidf()
+load_bert()
+load_tfidf()
 
 # Load data using st.cache_data to prevent reloading on every run
 def load_data():
