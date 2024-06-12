@@ -79,7 +79,7 @@ class ModelCreator:
 if __name__ == "__main__":     
     model_creator = ModelCreator()
     for model in ["bert", "tfidf"]:
-        model_creator.split_pkl(f"./data/model/similarity_{model}.pkl", "./data/model/", 99000000, model)
+        model_creator.split_pkl(f"./data/similarity_{model}.pkl", "./data/model/", 49000000, model)
     for model in ["bert", "tfidf"]:
-        model_creator.join_pkl("./data/model/", f"./data/similarity_{model}.pkl", read_size=99000000, PARTS=[f"{model}_model{i}" for i in range(1,4)])   
+        model_creator.join_pkl("./data/model/", f"./data/similarity_{model}.pkl", read_size=49000000, PARTS=[f"{model}_model{i}" for i in range(1,28)])   
     #join(source_dir='', dest_file="Combined_Model.p", read_size = 50000000)

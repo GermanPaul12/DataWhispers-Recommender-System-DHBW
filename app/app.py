@@ -51,14 +51,14 @@ def load_tfidf():
     if path.exists(f"./data/similarity_tfidf.pkl"):
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
-        ModelCreator().join_pkl("./data/model/", f"./data/similarity_tfidf.pkl", read_size=99000000, PARTS=[f"tfidf_model{i}" for i in range(1,4)])
+        ModelCreator().join_pkl("./data/model/", f"./data/similarity_tfidf.pkl", read_size=49000000, PARTS=[f"tfidf_model{i}" for i in range(1,28)])
         
         
 def load_bert():
     if path.exists(f"./data/similarity_bert.pkl"):
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
-        ModelCreator().join_pkl("./data/model/", f"./data/similarity_bert.pkl", read_size=99000000, PARTS=[f"bert_model{i}" for i in range(1,4)])
+        ModelCreator().join_pkl("./data/model/", f"./data/similarity_bert.pkl", read_size=49000000, PARTS=[f"bert_model{i}" for i in range(1,28)])
 
 
 def load_movies():
@@ -150,12 +150,14 @@ def display_selection_page():
                 genre = ', '.join(movie.iloc[0]['listed_in']) if movie.iloc[0]['listed_in'] else "-"
                 country = ', '.join(movie.iloc[0]['country']) if movie.iloc[0]['country'] else "-"
                 release = movie.iloc[0]['release_year'] if movie.iloc[0]['release_year'] else "-"
+                platform = movie.iloc[0]['platform'] if movie.iloc[0]['platform'] else "-"
                 with st.container(border=True):
                     st.markdown(f'<p class="info">Chosen Movie or Show :</p><br>', unsafe_allow_html=True)
                     st.header(capitalize_sentence(selected_movie))
                     st.markdown(f'<p class="info">Director: {capitalize_sentence(director)}</p>', unsafe_allow_html=True)  
                     st.markdown(f'<p class="info">Country: {capitalize_sentence(country)}</p>', unsafe_allow_html=True)    
                     st.markdown(f'<p class="info">Genre: {capitalize_sentence(genre)}</p>', unsafe_allow_html=True)
+                    st.markdown(f'<p class="info">Platform: {capitalize_sentence(platform)}</p>', unsafe_allow_html=True)
             with st.container(border=True):
                 if path.exists(f"./data/similarity_bert.pkl") and path.exists(f"./data/similarity_tfidf.pkl"):
                     st.title("🔻 Recommendation will be shown below 🔻")
@@ -201,7 +203,7 @@ def display_recommendations(recommended_movie_ids):
             genre = ', '.join(movie['listed_in']) if movie['listed_in'] else "-"
             country = ', '.join(movie['country']) if movie['country'] else "-"
             release = movie['release_year'] if movie['release_year'] else "-"
-
+            platform = movie["platform"] if movie["platform"] else "-"
             with titles[i]: st.title(capitalize_sentence(title))
             # Display each movie in a separate column
             with columns[i]:
@@ -215,6 +217,7 @@ def display_recommendations(recommended_movie_ids):
                 st.markdown(f'<p class="info">Director: {capitalize_sentence(director)}</p>', unsafe_allow_html=True)  
                 st.markdown(f'<p class="info">Country: {capitalize_sentence(country)}</p>', unsafe_allow_html=True)    
                 st.markdown(f'<p class="info">Genre: {capitalize_sentence(genre)}</p>', unsafe_allow_html=True)
+                st.markdown(f'<p class="info">Platform: {capitalize_sentence(platform)}</p>', unsafe_allow_html=True)
         else:
             st.write(f"Movie '{index}' not found in the dataset.")
 
