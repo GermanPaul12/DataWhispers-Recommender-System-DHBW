@@ -4,13 +4,23 @@ import requests
 import numpy as np
 from PIL import Image
 from os import path
+import os
 import time
 
 from model_pickle_creator import ModelCreator
 
 
 NETFLIX_SYMBOL = Image.open("./data/images/Netflix_Symbol_RGB.png")
-st.set_page_config(page_title="Recommender System",page_icon=NETFLIX_SYMBOL , layout="wide")
+st.set_page_config(page_title="Recommender System", page_icon=NETFLIX_SYMBOL, layout="wide")
+
+
+# Get the total RAM size in bytes
+total_memory = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
+
+# Convert bytes to GB
+total_memory_gb = total_memory / (1024 ** 3)
+
+print(f"Total RAM: {total_memory_gb:.2f} GB")
 
 
 if 'run_button' in st.session_state and st.session_state.run_button == True:
@@ -70,6 +80,7 @@ def load_movies():
 NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
 st.sidebar.image(NETFLIX_LOGO)
 st.sidebar.title('Team 5')
+st.sidebar.write(total_memory_gb)
 if st.session_state.show_vid and False:
     st.sidebar.write("You can watch this video while the models are training")
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
