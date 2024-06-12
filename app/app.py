@@ -6,8 +6,7 @@ from PIL import Image
 from os import path
 import time
 
-from model_bert import ModelBert
-from model_tfidf import ModelTfidf
+from model_pickle_creator import ModelCreator
 
 st.set_page_config(layout="wide")
 
@@ -48,35 +47,22 @@ streamlit_style = """
 st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
+@st.cache_data(show_spinner=True)
 def load_tfidf():
     if path.exists(f"./data/similarity_tfidf.pkl"):
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
-        model_tfidf = ModelTfidf()
-        with st.spinner('TFIDF: Wait for nltk data to download...'):
-            model_tfidf.download_nltk_data()
-        with st.spinner("TFIDF: Wait for text to be preprocessed"):
-            model_tfidf.preprocess_data()  
-        with st.spinner("TFIDF: Wait for cosine similarity to be calculated..."):
-            model_tfidf.calc_cosine_similarity()
-        with st.spinner("TFIDF: Wait for pickle file to be created..."):
-            model_tfidf.dump_pickle_file()          
+        ModelCreator().join_pkl("./data/model/", f"./data/similarity_tfidf.pkl", read_size=99000000, PARTS=[f"tfidf_model{i}" for i in range(1,4)])
+    load_tfidf()
+        
 
-
+@st.cache_data(show_spinner=True)
 def load_bert():
     if path.exists(f"./data/similarity_bert.pkl"):
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
-        model_bert = ModelBert()
-        with st.spinner("BERT: Wait for text to be preprocessed"):
-            model_bert.preprocess_text()  
-        with st.spinner("BERT: Wait for cosine similarity to be calculated..."):
-            model_bert.get_similarity_scores()
-        with st.spinner("BERT: Wait for Metadata to be generated..."):    
-            model_bert.generate_metadata()  
-        with st.spinner("BERT: Wait for pickle file to be created..."):
-            model_bert.dump_pickle_files() 
-
+        ModelCreator().join_pkl("./data/model/", f"./data/similarity_bert.pkl", read_size=99000000, PARTS=[f"bert_model{i}" for i in range(1,4)])
+    load_bert()
 
 @st.cache_data(show_spinner=True)
 def load_movies():
