@@ -11,6 +11,17 @@ import model_tfidf
 
 st.set_page_config(layout="wide")
 
+
+if 'run_button' in st.session_state and st.session_state.run_button == True:
+    st.session_state.running = True
+else:
+    st.session_state.running = False
+    
+if "show_vid" not in st.session_state:
+    if path.exists(f"./data/similarity_bert.pkl") and path.exists(f"./data/similarity_tfidf.pkl"):
+        st.session_state.show_vid = False
+    else: st.session_state.show_vid = True    
+
 streamlit_style = """
 			<style>
             /* Hide the scrollbar but keep scrolling functionality */
@@ -43,9 +54,7 @@ def load_tfidf():
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
         with st.spinner('Wait for models to train...'):
-            model_tfidf.get_model()
-        time.sleep(120)    
-        load_tfidf()   
+            model_tfidf.get_model()           
 
 @st.cache_data(show_spinner=True)
 def load_bert():
@@ -53,18 +62,23 @@ def load_bert():
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
         with st.spinner('Wait for models to train...'):
-            model_bert.get_model()
-        time.sleep(120)    
-        load_bert()   
+            model_bert.get_model()     
 
 
 @st.cache_data(show_spinner=True)
 def load_movies():
     return pickle.load(open(r'./data/movie_list.pkl', 'rb'))   
 
+NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
+st.sidebar.image(NETFLIX_LOGO)
+st.sidebar.title('Team 5')
+if st.session_state.show_vid:
+    st.sidebar.write("You can watch this video while the models are training")
+    st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
+
 # Initialize models if needed
-load_bert()
-load_tfidf()
+#load_bert()
+#load_tfidf()
 
 # Load data using st.cache_data to prevent reloading on every run
 def load_data():
@@ -72,11 +86,7 @@ def load_data():
         'movies': load_movies(),
         'similarity_tfidf': load_tfidf(),
         'similarity_bert': load_bert(),       
-    } 
-
-NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
-st.sidebar.image(NETFLIX_LOGO)
-st.sidebar.title('Team 5')
+    }
 
 # Load data
 data = load_data()
@@ -135,7 +145,7 @@ def display_selection_page():
                     "Type or select a movie from the dropdown",
                     movie_list 
                 )
-                generate_recommendation_btn = st.button('Show Recommendation')
+                generate_recommendation_btn = st.button('Show Recommendation', disabled=st.session_state.running, key='run_button')
             if selected_movie in movies["title"].values:
                 movie = movies[movies["title"] == selected_movie]
                 director = ', '.join(movie.iloc[0]['director']) if movie.iloc[0]['director'] else "-"
@@ -150,7 +160,13 @@ def display_selection_page():
                     st.markdown(f'<p class="info">Country: {capitalize_sentence(country)}</p>', unsafe_allow_html=True)    
                     st.markdown(f'<p class="info">Genre: {capitalize_sentence(genre)}</p>', unsafe_allow_html=True)
             with st.container(border=True):
-                st.title("🔻 Recommendation will be shown below 🔻")
+                if path.exists(f"./data/similarity_bert.pkl") and path.exists(f"./data/similarity_tfidf.pkl"):
+                    st.title("🔻 Recommendation will be shown below 🔻")
+                    st.session_state.running = True
+                    st.session_state.show_vid = False
+                else: 
+                    st.warning("Models nopt trained yet. Please wait...") 
+                    st.session_state.running = False   
         with col2:
             if selected_movie in movies["title"].values:
                 st.image(get_image_from_tmdb(selected_movie), use_column_width=True)

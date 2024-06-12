@@ -5,32 +5,34 @@ import pickle
 import torch
 from collections import Counter
 from sentence_transformers import SentenceTransformer
+import streamlit as st
 
 def get_model():
     # Read the CSV files
-    history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
-    titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
+    with st.spinner("Loading bert data..."):
+        history_df = pd.read_csv('./data/netflix_history_preprocessed.csv')
+        titles_df = pd.read_csv('./data/netflix_titles_preprocessed.csv')
 
-    # Convert string representation of list to actual list
-    titles_df['director'] = titles_df['director'].apply(ast.literal_eval)
-    titles_df['cast'] = titles_df['cast'].apply(ast.literal_eval)
-    titles_df['country'] = titles_df['country'].apply(ast.literal_eval)
-    titles_df['listed_in'] = titles_df['listed_in'].apply(ast.literal_eval)
+        # Convert string representation of list to actual list
+        titles_df['director'] = titles_df['director'].apply(ast.literal_eval)
+        titles_df['cast'] = titles_df['cast'].apply(ast.literal_eval)
+        titles_df['country'] = titles_df['country'].apply(ast.literal_eval)
+        titles_df['listed_in'] = titles_df['listed_in'].apply(ast.literal_eval)
 
-    # Keep only the first occurrence of each title
-    titles_df = titles_df.drop_duplicates(subset=['title'], keep='first').reset_index(drop=True)
+        # Keep only the first occurrence of each title
+        titles_df = titles_df.drop_duplicates(subset=['title'], keep='first').reset_index(drop=True)
 
-    history_titles_set = set(history_df['Title'])
-    titles_set = set(titles_df['title'])
-    overlaps = history_titles_set.intersection(titles_set)
-    en_history_df = history_df[history_df['Title'].isin(overlaps)]
-    watch_history = en_history_df['Title'].to_list()
+        history_titles_set = set(history_df['Title'])
+        titles_set = set(titles_df['title'])
+        overlaps = history_titles_set.intersection(titles_set)
+        en_history_df = history_df[history_df['Title'].isin(overlaps)]
+        watch_history = en_history_df['Title'].to_list()
 
-    # Flatten the list of actor names
-    actor_names = [name for sublist in titles_df['cast'] for name in sublist]
+        # Flatten the list of actor names
+        actor_names = [name for sublist in titles_df['cast'] for name in sublist]
 
-    # Count the occurrences of each actor name
-    name_counts = Counter(actor_names)
+        # Count the occurrences of each actor name
+        name_counts = Counter(actor_names)
 
     def keep_top_three_actors(actor_list):
         if len(actor_list) == 0:
@@ -86,14 +88,14 @@ def get_model():
             text += f"the movie falls within the genre of {','.join(row['listed_in'])}. "
         
         metadata.append(text)
-        
-    metadata_embeddings = model.encode(metadata, convert_to_tensor=True)
-    metadata_similarity_scores = torch.matmul(metadata_embeddings, metadata_embeddings.T).cpu().numpy()
+    with st.spinner("Wait for models to train..."):
+        metadata_embeddings = model.encode(metadata, convert_to_tensor=True)
+        metadata_similarity_scores = torch.matmul(metadata_embeddings, metadata_embeddings.T).cpu().numpy()
 
-    pickle.dump(titles_df, open('./data/movie_list.pkl', 'wb'))
-    pickle.dump(descriptions_similarity_scores + metadata_similarity_scores, open('./data/similarity_bert.pkl', 'wb'))
-    pickle.dump(descriptions_embeddings.cpu().numpy(), open('./data/descriptions_embeddings.pkl', 'wb'))
-    pickle.dump(metadata_embeddings.cpu().numpy(), open('./data/metadata_embeddings.pkl', 'wb'))
-
+        pickle.dump(titles_df, open('./data/movie_list.pkl', 'wb'))
+        pickle.dump(descriptions_similarity_scores + metadata_similarity_scores, open('./data/similarity_bert.pkl', 'wb'))
+        pickle.dump(descriptions_embeddings.cpu().numpy(), open('./data/descriptions_embeddings.pkl', 'wb'))
+        pickle.dump(metadata_embeddings.cpu().numpy(), open('./data/metadata_embeddings.pkl', 'wb'))
+    
 if __name__ == "__main__":
     get_model()
