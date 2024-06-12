@@ -4,6 +4,7 @@ import requests
 import numpy as np
 from PIL import Image
 from os import path
+import time
 
 import model_bert
 import model_tfidf
@@ -43,6 +44,7 @@ def load_tfidf():
     else:
         with st.spinner('Wait for models to train...'):
             model_tfidf.get_model()
+        time.sleep(120)    
         load_tfidf()   
 
 @st.cache_data(show_spinner=True)
@@ -52,6 +54,7 @@ def load_bert():
     else:
         with st.spinner('Wait for models to train...'):
             model_bert.get_model()
+        time.sleep(120)    
         load_bert()   
 
 
