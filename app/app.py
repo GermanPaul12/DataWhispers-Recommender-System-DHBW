@@ -57,7 +57,7 @@ def load_tfidf():
         with st.spinner('Wait for nltk data to download...'):
             model_tfidf.download_nltk_data()
         with st.spinner("Wait for text to be preprocessed"):
-            model_tfidf.preprocess_text()  
+            model_tfidf.preprocess_data()  
         with st.spinner("Wait for cosine similarity to be calculated..."):
             model_tfidf.calc_cosine_similarity()
         with st.spinner("Wait for pickle file to be created..."):

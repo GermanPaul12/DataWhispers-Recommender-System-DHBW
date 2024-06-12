@@ -21,7 +21,7 @@ class ModelTfidf:
         nltk.download('stopwords')
     
     
-    def preprocess_text(self, text):
+    def preprocess_data(self):
         # Convert string representation of list to actual list
         self.titles_df['director'] = self.titles_df['director'].apply(ast.literal_eval)
         self.titles_df['cast'] = self.titles_df['cast'].apply(ast.literal_eval)
