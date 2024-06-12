@@ -22,13 +22,13 @@ Estimated time: 4mins
     git clone https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW.git
     ```
 
-2. (Optional) Download the large files here. If you don't download the files startup will take longer around 3mins in total, because models will be trained from scratchs:
+2. Change directory to the project
 
-   [Large files link](https://stadsinitiative-my.sharepoint.com/:f:/g/personal/german_paul_stads_de/EohrgaWKqj1MiAwoA4b-QaUBQlr8Qta-gO0P4GAMqWa_zQ?e=edlDrd)
+    ``` bash
+    cd DataWhispers-Recommender-System-DHBW/
+    ```
 
-3. Add the large files to the `data` directory
-
-4. Create a virtual environment:
+3. Create a virtual environment:
 
     Linux or mac OS
 
@@ -42,7 +42,7 @@ Estimated time: 4mins
     python -m venv venv/
     ```
 
-5. Activate the virtual environment
+4. Activate the virtual environment
 
     Linux or mac OS
 
@@ -56,22 +56,16 @@ Estimated time: 4mins
     .\venv\Scripts\Activate.ps1
     ```
 
-6. Install the dependencies
+5. Install the dependencies
 
     ``` bash
     pip install -r requirements.txt
     ```
 
-7. Change directory to the app
-
-    ``` bash
-    cd app/
-    ```
-
-8. Start the application
+6. Start the application
 
     ``` bash
     streamlit run app/app.py 
     ```
 
-9. View the web-app at http://localhost:8501/
+7. View the web-app at http://localhost:8501/

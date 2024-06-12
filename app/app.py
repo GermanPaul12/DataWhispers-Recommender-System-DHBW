@@ -1,3 +1,4 @@
+# Import libraries
 import pickle
 import streamlit as st
 import requests
@@ -10,24 +11,18 @@ import time
 from model_pickle_creator import ModelCreator
 
 
+# Set favicon, page title and layout
 NETFLIX_SYMBOL = Image.open("./data/images/Netflix_Symbol_RGB.png")
 st.set_page_config(page_title="Recommender System", page_icon=NETFLIX_SYMBOL, layout="wide")
 
 
-# Get the total RAM size in bytes
-total_memory = os.sysconf('SC_PAGE_SIZE') * os.sysconf('SC_PHYS_PAGES')
-
-# Convert bytes to GB
-total_memory_gb = total_memory / (1024 ** 3)
-
-print(f"Total RAM: {total_memory_gb:.2f} GB")
-
-
+# Disable button if results already shown
 if 'run_button' in st.session_state and st.session_state.run_button == True:
     st.session_state.running = True
 else:
     st.session_state.running = False
-    
+
+# Show funny video while waiting, will probably be removed in endproduct
 if "show_vid" not in st.session_state:
     if path.exists(f"./data/similarity_bert.pkl") and path.exists(f"./data/similarity_tfidf.pkl"):
         st.session_state.show_vid = False
@@ -58,29 +53,28 @@ streamlit_style = """
 			"""
 st.markdown(streamlit_style, unsafe_allow_html=True)
 
-
+# load tfidf model
 def load_tfidf():
     if path.exists(f"./data/similarity_tfidf.pkl"):
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
-        ModelCreator().join_pkl("./data/model/", f"./data/similarity_tfidf.pkl", read_size=49000000, PARTS=[f"tfidf_model{i}" for i in range(1,28)])
+        ModelCreator().join_pkl("./data/model/", f"./data/similarity_tfidf.pkl", read_size=50000000, PARTS=[f"tfidf_model{i}" for i in range(1,28)])
         
-        
+# load bert model
 def load_bert():
     if path.exists(f"./data/similarity_bert.pkl"):
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
-        ModelCreator().join_pkl("./data/model/", f"./data/similarity_bert.pkl", read_size=49000000, PARTS=[f"bert_model{i}" for i in range(1,28)])
+        ModelCreator().join_pkl("./data/model/", f"./data/similarity_bert.pkl", read_size=50000000, PARTS=[f"bert_model{i}" for i in range(1,28)])
 
-
+# load movie list
 def load_movies():
     return pickle.load(open(r'./data/movie_list.pkl', 'rb'))   
 
-
+# show netflix logo and team number in sidebar
 NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
 st.sidebar.image(NETFLIX_LOGO)
 st.sidebar.title('Team 5')
-st.sidebar.write(total_memory_gb)
 if st.session_state.show_vid and False:
     st.sidebar.write("You can watch this video while the models are training")
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
@@ -89,24 +83,40 @@ if st.session_state.show_vid and False:
 load_tfidf()
 load_bert()
 
-# Load data using st.cache_data to prevent reloading on every run
+# cache models to prevent reloading on every run
 @st.cache_data(show_spinner=True)
+def cache_tfidf():
+    return load_tfidf()
+
+# cache models to prevent reloading on every run
+@st.cache_data(show_spinner=True)
+def cache_bert():
+    return load_bert()
+
+# cache movie list to prevent reloading on every run
+@st.cache_data(show_spinner=True)
+def cache_movies():
+    return load_movies()
+
+# Load data using st.cache_data to prevent reloading on every run
 def load_data():
     return {
-        'movies': load_movies(),
-        'similarity_tfidf': load_tfidf(),
-        'similarity_bert': load_bert(),       
+        'movies': cache_movies(),
+        'similarity_tfidf': cache_tfidf(),
+        'similarity_bert': cache_bert(),       
     }
 
 # Load data
 data = load_data()
 movies = data['movies']
 
+# Give option for watch history to get recommendations based on mutliple movies
 if 'watched_movies' not in st.session_state:
     st.session_state.watched_movies = []
 if 'summed_matrix_histories' not in st.session_state:
     st.session_state.summed_matrix_histories = np.zeros(movies.shape[0])
 
+# recommend movies based on user input
 def recommend(movie, use_history):
     if embed_type == 'TF-IDF':
         similarity = data['similarity_tfidf']
@@ -135,7 +145,7 @@ def recommend(movie, use_history):
             
     return recommended_movie_ids
         
-
+# display recommendation page
 def display_selection_page():
     st.title('Movie Recommender System - Data Exploration')
 
@@ -234,7 +244,7 @@ def display_recommendations(recommended_movie_ids):
         else:
             st.write(f"Movie '{index}' not found in the dataset.")
 
-
+# get image from TMDB API
 def get_image_from_tmdb(movie_name):
     headers = {
         "accept": "application/json",
@@ -250,7 +260,7 @@ def get_image_from_tmdb(movie_name):
         return None
         
 
-
+# Capitalize the first letter of each word in a sentence
 def capitalize_sentence(string):
     # Split the string into sentences
     sentences = string.split(' ')
