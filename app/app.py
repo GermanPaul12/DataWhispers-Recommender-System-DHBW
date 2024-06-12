@@ -48,34 +48,33 @@ streamlit_style = """
 st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
-@st.cache_data(show_spinner=True)
 def load_tfidf():
     if path.exists(f"./data/similarity_tfidf.pkl"):
         return pickle.load(open(f'./data/similarity_tfidf.pkl', 'rb'))
     else:
         model_tfidf = ModelTfidf()
-        with st.spinner('Wait for nltk data to download...'):
+        with st.spinner('TFIDF: Wait for nltk data to download...'):
             model_tfidf.download_nltk_data()
-        with st.spinner("Wait for text to be preprocessed"):
+        with st.spinner("TFIDF: Wait for text to be preprocessed"):
             model_tfidf.preprocess_data()  
-        with st.spinner("Wait for cosine similarity to be calculated..."):
+        with st.spinner("TFIDF: Wait for cosine similarity to be calculated..."):
             model_tfidf.calc_cosine_similarity()
-        with st.spinner("Wait for pickle file to be created..."):
+        with st.spinner("TFIDF: Wait for pickle file to be created..."):
             model_tfidf.dump_pickle_file()          
 
-@st.cache_data(show_spinner=True)
+
 def load_bert():
     if path.exists(f"./data/similarity_bert.pkl"):
         return pickle.load(open(f'./data/similarity_bert.pkl', 'rb'))
     else:
         model_bert = ModelBert()
-        with st.spinner("Wait for text to be preprocessed"):
+        with st.spinner("BERT: Wait for text to be preprocessed"):
             model_bert.preprocess_text()  
-        with st.spinner("Wait for cosine similarity to be calculated..."):
+        with st.spinner("BERT: Wait for cosine similarity to be calculated..."):
             model_bert.get_similarity_scores()
-        with st.spinner("Wait for Metadata to be generated..."):    
+        with st.spinner("BERT: Wait for Metadata to be generated..."):    
             model_bert.generate_metadata()  
-        with st.spinner("Wait for pickle file to be created..."):
+        with st.spinner("BERT: Wait for pickle file to be created..."):
             model_bert.dump_pickle_files() 
 
 
@@ -86,7 +85,7 @@ def load_movies():
 NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
 st.sidebar.image(NETFLIX_LOGO)
 st.sidebar.title('Team 5')
-if st.session_state.show_vid:
+if st.session_state.show_vid and False:
     st.sidebar.write("You can watch this video while the models are training")
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
 

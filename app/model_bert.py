@@ -19,6 +19,7 @@ class ModelBert:
         self.metadata_similarity_scores = None
         self.descriptions_embeddings = None
         self.descriptions_similarity_scores = None
+        self.name_counts = None
     
     def preprocess_text(self):
         # Convert string representation of list to actual list
@@ -40,7 +41,7 @@ class ModelBert:
         actor_names = [name for sublist in self.titles_df['cast'] for name in sublist]
 
         # Count the occurrences of each actor name
-        name_counts = Counter(actor_names)
+        self.name_counts = Counter(actor_names)
         
     
     def get_similarity_scores(self):
