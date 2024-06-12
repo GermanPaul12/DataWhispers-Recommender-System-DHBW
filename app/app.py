@@ -227,7 +227,12 @@ def get_image_from_tmdb(movie_name):
     url = f"https://api.themoviedb.org/3/search/movie?query={movie_name}"
     response = requests.get(url, headers=headers)
     #print(response.json())
-    return f'https://image.tmdb.org/t/p/w185{response.json()["results"][0]["poster_path"]}'
+    try:
+        return f'https://image.tmdb.org/t/p/w185{response.json()["results"][0]["poster_path"]}'
+    except Exception as e:
+        print("Error inside get_image_from_tmdb func: " + e)
+        return None
+        
 
 
 def capitalize_sentence(string):
