@@ -9,10 +9,12 @@
 
 ## View our paper on this project
 
-[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/datapaper/Ausarbeitung.pdf?raw=true)
+[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/paper/Ausarbeitung.pdf?raw=true)
 
 
 ## Prerequisites
+
+Probably should work with most python3 versions >= 3.9, but if you don't have python3 installed on your machine we recommend to install the same version:
 
 [![Python 3.11.2](https://img.shields.io/badge/python-3.11.2-blue.svg)](https://www.python.org/downloads/release/python-3112/)
 
