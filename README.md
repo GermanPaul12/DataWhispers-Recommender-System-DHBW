@@ -7,14 +7,16 @@
 - Scikit, Torch and Sentence Transformer: For the models
 - EDA and Preprocessing: Pandas
 
-## View of cloud-hosted web-app
+## View our paper on this project
 
-It will load longer since the models will be trained from scratch.
-Estimated time: 4mins
+[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/datapaper/Ausarbeitung.pdf?raw=true)
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://datawhispers-movie-recommender.streamlit.app/)
 
-## Setup from scratch
+## Prerequisites
+
+[![Python 3.11.2](https://img.shields.io/badge/python-3.11.2-blue.svg)](https://www.python.org/downloads/release/python-3112/)
+
+## Setup project locally on your machine from scratch
 
 1. clone the repository
 
