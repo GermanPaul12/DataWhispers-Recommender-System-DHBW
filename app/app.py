@@ -12,7 +12,7 @@ from model_pickle_creator import ModelCreator
 
 
 # Set favicon, page title and layout
-NETFLIX_SYMBOL = Image.open("./data/images/Netflix_Symbol_RGB.png")
+NETFLIX_SYMBOL = Image.open("./data/images/datawhispers_logo.png")
 st.set_page_config(page_title="Recommender System", page_icon=NETFLIX_SYMBOL, layout="wide")
 
 
@@ -72,7 +72,7 @@ def load_movies():
     return pickle.load(open(r'./data/movie_list.pkl', 'rb'))   
 
 # show netflix logo and team number in sidebar
-NETFLIX_LOGO = Image.open("./data/images/Netflix_Logo_RGB.png")
+NETFLIX_LOGO = Image.open("./data/images/logos.png")
 st.sidebar.image(NETFLIX_LOGO)
 st.sidebar.title('Team 5')
 if st.session_state.show_vid and False:
