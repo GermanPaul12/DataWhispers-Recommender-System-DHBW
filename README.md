@@ -57,7 +57,7 @@ Probably should work with most python3 versions >= 3.9, but if you don't have py
     Windows
 
     ``` bash
-    .\venv\Scripts\Activate.ps1
+    .\venv\Scripts\Activate
     ```
 
 5. Install the dependencies
