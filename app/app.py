@@ -80,21 +80,16 @@ if st.session_state.show_vid and False:
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
 
 # Initialize models if needed
-load_tfidf()
-load_bert()
 
 # cache models to prevent reloading on every run
-@st.cache_data(show_spinner=True)
 def cache_tfidf():
     return load_tfidf()
 
 # cache models to prevent reloading on every run
-@st.cache_data(show_spinner=True)
 def cache_bert():
     return load_bert()
 
 # cache movie list to prevent reloading on every run
-@st.cache_data(show_spinner=True)
 def cache_movies():
     return load_movies()
 
