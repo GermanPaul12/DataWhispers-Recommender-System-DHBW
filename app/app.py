@@ -79,6 +79,10 @@ if st.session_state.show_vid and False:
     st.sidebar.write("You can watch this video while the models are training")
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
 
+st.sidebar.subheader('Select the platforms you want recommendations for')
+netflix_check = st.sidebar.checkbox('Netflix', value=True)
+disney_check = st.sidebar.checkbox('Disney+', value=True)
+prime_check = st.sidebar.checkbox('Prime Video', value=True)
 # Initialize models if needed
 
 # cache models to prevent reloading on every run
@@ -133,6 +137,14 @@ def recommend(movie, use_history):
     count = 0
     for index, item in distances[1:]:
         if index not in st.session_state.watched_movies:
+            movie = movies.iloc[index]
+            platform = movie["platform"] if movie["platform"] else "-"
+            if not netflix_check and platform == 'Netflix':
+                continue
+            if not disney_check and platform == 'disney_plus':
+                continue
+            if not prime_check and platform == 'amazon_prime':
+                continue
             recommended_movie_ids.append(index)
             count = count + 1
             if count == 5:
