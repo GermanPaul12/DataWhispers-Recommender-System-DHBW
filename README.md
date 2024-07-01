@@ -1,5 +1,15 @@
 # DataWhispers Recommender System for Data Exploration DHBW course
 
+## Our Goal
+
+Our goal is to develop a content-based recommender system that makes recommendations for other similar films based on one or more films watched. In addition, the system is to be presented in a user-friendly interface.
+
+## Team Members
+
+- German Paul
+- Michael Greif
+- Nico Dobberkau
+
 ## Our tech stack
 
 - Git: Version control
