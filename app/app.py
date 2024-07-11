@@ -72,7 +72,7 @@ def load_movies():
 # show netflix logo and team number in sidebar
 NETFLIX_LOGO = Image.open("./data/images/logos.png")
 st.sidebar.image(NETFLIX_LOGO)
-st.sidebar.title('Team 5')
+st.sidebar.title('Team 4')
 if st.session_state.show_vid and False:
     st.sidebar.write("You can watch this video while the models are training")
     st.sidebar.video("https://www.youtube.com/watch?v=UcRtFYAz2Yo")
