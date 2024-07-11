@@ -2,7 +2,7 @@
 
 ## Github Link
 
-[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
+Click here: [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
 
 ## Our Goal
 
@@ -10,52 +10,55 @@ Our goal is to develop a content-based recommender system that makes recommendat
 
 ## Team Members
 
-- German Paul
-- Michael Greif
-- Nico Dobberkau
+:bust_in_silhouette: German Paul
+:bust_in_silhouette: Michael Greif
+:bust_in_silhouette: Nico Dobberkau
 
 ## Our tech stack
 
-- Git: Version control
-- Streamlit: UI
-- Scikit-Learn, Torch and Sentence Transformer: Model creation
-- EDA and Preprocessing: Pandas, Numpy, String, Missingno
+- ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white): Version control
+- ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white): UI
+- ![Scikit-Learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white), ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) and Sentence Transformer: Model creation
+- ![Pandas](https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white) and ![Numpy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white): Explanatory Data Analysis and Data Preprocessing 
+- ![Plotly](https://img.shields.io/badge/Plotly-239120?style=for-the-badge&logo=plotly&logoColor=white) and ![Matplotlib](![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)): Data Visualization
 
 ## Our structure
 
-1. App Directory
-   - Streamlit App
-2. Data Directory
-   - All the data we need for the project
-   - Logos and images
-   - Pretrained model files
-   - Our paper
-   - Our presentation
-   - Our datasets and preprocessed datasets
-3. EDA directory
-   - Notebook for the Explanatory Data Analysis
-4. Model directory
-   - Model creation files
-   - Creation of preprocessed datasets scripts
-5. Root directory
-   - All the directories
-   - Our documentation, dependencies and files that should be ignored by git
+```
+📦root directory
+ ┣ 📂app
+ ┃ ┣ 📜Streamlit App
+ ┣ 📂data
+ ┃ ┣ 📜Logos and movie image placeholder
+ ┃ ┣ 📜Pretrained model files
+ ┃ ┣ 📜Report
+ ┃ ┣ 📜Presentation
+ ┃ ┣ 📜Our datasets and preprocessed datasets
+ ┣ 📂EDA
+ ┃ ┣ 📜Explanatory Data Analysis Notebook
+ ┣ 📂model
+ ┃ ┣ 📜Model creation files
+ ┃ ┣ 📜Creation of preprocessed datasets scripts
+ ┣ 📜README
+ ┣ 📜dependencies
+ ┗ 📜files to be ignored by github
+```
 
 ## Download and view our report on this project here
 
-[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/report/project_report_4.pdf?raw=true)
+Click here: [![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/report/project_report_4.pdf?raw=true)
 
 ## Download and view our PowerPoint for the project here
 
-[![Download PP as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/project_presentation_4.pdf?raw=true)
+Click here: [![Download PP as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/project_presentation_4.pdf?raw=true)
 
 ## Prerequisites for the local setup
 
-Probably should work with most python3 versions >= 3.9, but if you don't have python3 installed on your machine we recommend to install the same version:
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54): Should work with all python3 versions >= 3.9, but if you don't have python3 installed on your machine we recommend to install the same version:
 
 [![Python 3.11.2](https://img.shields.io/badge/python-3.11.2-blue.svg)](https://www.python.org/downloads/release/python-3112/)
 
-Also you need a RAM space capacity of at least 8GB ;-)
+:computer: Also you need a RAM space capacity of at least 8GB, since models will be saved in memory ;-)
 
 ## Setup project locally on your machine from scratch
 
