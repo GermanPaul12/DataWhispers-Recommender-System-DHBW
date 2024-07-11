@@ -2,7 +2,7 @@
 
 ## Github Link
 
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)(https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
+[![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
 
 ## Our Goal
 
