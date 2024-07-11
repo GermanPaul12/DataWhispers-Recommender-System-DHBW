@@ -13,15 +13,39 @@ Our goal is to develop a content-based recommender system that makes recommendat
 ## Our tech stack
 
 - Git: Version control
-- Streamlit: UI & Cloud Hosting
-- Scikit, Torch and Sentence Transformer: For the models
-- EDA and Preprocessing: Pandas
+- Streamlit: UI
+- Scikit-Learn, Torch and Sentence Transformer: Model creation
+- EDA and Preprocessing: Pandas, Numpy, String, Missingno
 
-## View our paper on this project
+## Our structure
 
-[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/paper/Ausarbeitung.pdf?raw=true)
+1. App Directory
+   - Streamlit App
+2. Data Directory
+   - All the data we need for the project
+   - Logos and images
+   - Pretrained model files
+   - Our paper
+   - Our presentation
+   - Our datasets and preprocessed datasets
+3. EDA directory
+   - Notebook for the Explanatory Data Analysis
+4. Model directory
+   - Model creation files
+   - Creation of preprocessed datasets scripts
+5. Root directory
+   - All the directories
+   - Our documentation, dependencies and files that should be ignored by git
 
-## Prerequisites
+## Download and view our paper on this project here
+
+[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/paper/Data-Exploration-DHBW-Mannheim.pdf?raw=true)
+
+## Download and view our PowerPoint for the project here
+
+[![Download PP as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/Data-Exploration-Final.pdf?raw=true)
+
+## Prerequisites for the local setup
 
 Probably should work with most python3 versions >= 3.9, but if you don't have python3 installed on your machine we recommend to install the same version:
 
