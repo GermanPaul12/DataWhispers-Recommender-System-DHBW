@@ -5,8 +5,6 @@ import requests
 import numpy as np
 from PIL import Image
 from os import path
-import os
-import time
 
 from model_pickle_creator import ModelCreator
 
