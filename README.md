@@ -54,11 +54,11 @@ Our goal is to develop a content-based recommender system that makes recommendat
 
 ## Download and view our report on this project here
 
-![Click here for the report](https://img.shields.io/badge/click%20on%20the%20badge%20to%20the%20right%20for%20the%20report-FFFFFF?style=for-the-badge) [![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/report/project_report_4.pdf?raw=true)
+![Click here for the report](https://img.shields.io/badge/click%20on%20the%20badge%20to%20the%20right%20for%20the%20report-FFFFFF?style=for-the-badge) [![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://raw.githubusercontent.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/blob/main/data/report/project_report_4.pdf)
 
 ## Download and view our PowerPoint for the project here
 
-![Click here for the presentation](https://img.shields.io/badge/click%20on%20the%20badge%20to%20the%20right%20for%20the%20presentation-FFFFFF?style=for-the-badge) [![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/project_presentation_4.pdf?raw=true)
+![Click here for the presentation](https://img.shields.io/badge/click%20on%20the%20badge%20to%20the%20right%20for%20the%20presentation-FFFFFF?style=for-the-badge) [![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://raw.githubusercontent.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/blob/main/data/presentation/project_presentation_4.pdf)
 
 ## Prerequisites for the local setup
 
