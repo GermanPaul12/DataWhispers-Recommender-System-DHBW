@@ -2,7 +2,7 @@
 
 ## Github Link
 
-Click here to get to the Github Repository: [![Click here for the GitHub Repository](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
+![Click here for the Github Repo](https://img.shields.io/badge/click%20here%20for%20the%20github%20repository-FFFFFF?style=for-the-badge) [![Click here for the GitHub Repository](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
 
 ## Our Goal
 
@@ -22,11 +22,13 @@ Our goal is to develop a content-based recommender system that makes recommendat
 
 ![User Interface](https://img.shields.io/badge/user%20interface-000000?style=for-the-badge) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
  
-![Model Creation](https://img.shields.io/badge/model%20creation-000000?style=for-the-badge) ![Scikit-Learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![Sentence Transformer](https://img.shields.io/badge/hyperledger-2F3134?style=for-the-badge&logo=hyperledger&logoColor=white)
+![Model Creation](https://img.shields.io/badge/model%20creation-000000?style=for-the-badge) ![Scikit-Learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white) ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) ![Sentence Transformer](https://img.shields.io/badge/sentence%20transformer-000000?style=for-the-badge)
 
 ![Explanatory Data Analysis and Data Preprocessing](https://img.shields.io/badge/Explanatory%20Data%20Analysis%20and%20Data%20Preprocessing-000000?style=for-the-badge) ![Pandas](https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white) ![Numpy](https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white)  
 
-![Model Creation](https://img.shields.io/badge/data%20visualization-000000?style=for-the-badge) ![Plotly](https://img.shields.io/badge/Plotly-239120?style=for-the-badge&logo=plotly&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)
+![Data Visualization](https://img.shields.io/badge/data%20visualization-000000?style=for-the-badge) ![Plotly](https://img.shields.io/badge/Plotly-239120?style=for-the-badge&logo=plotly&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black)
+
+![Datasets](https://img.shields.io/badge/dataset-000000?style=for-the-badge) ![Kaggle](https://img.shields.io/badge/Kaggle-035a7d?style=for-the-badge&logo=kaggle&logoColor=white)
 
 ## Our structure
 
@@ -60,7 +62,7 @@ Click here to [![Click here to download the PDF](https://img.shields.io/badge/Do
 
 ## Prerequisites for the local setup
 
-:information_source: Should work with all python 3 versions >= ![Python 3.9](https://img.shields.io/badge/python-3.9-white.svgs), but if you don't have python 3 installed on your machine we recommend to install the same version as we have 
+:information_source: Should work with all python 3 versions >= ![Python 3.9](https://img.shields.io/badge/python-3.9-white.svg), but if you don't have python 3 installed on your machine we recommend to install the same version as we have 
 
 :snake: Click here to get to the download page of our python version: [![Python 3.11.2](https://img.shields.io/badge/python-3.11.2-blue.svg)](https://www.python.org/downloads/release/python-3112/)
 
