@@ -2,7 +2,7 @@
 
 ## Github Link
 
-[![Click here for the GitHub Repository](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
+Click here to get to the Github Repository: [![Click here for the GitHub Repository](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
 
 ## Our Goal
 
@@ -17,10 +17,12 @@ Our goal is to develop a content-based recommender system that makes recommendat
 :bust_in_silhouette: Nico Dobberkau
 
 ## Our tech stack
-:arrow_right: ![](https://img.shields.io/badge/hyperledger-2F3134?style=for-the-badge&logo=hyperledger&logoColor=white)
-![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white) :arrow_right: ![Version Control](https://img.shields.io/badge/hyperledger-2F3134?style=for-the-badge&logo=hyperledger&logoColor=white)
 
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white) :arrow_right: ![User Interface](https://img.shields.io/badge/hyperledger-2F3134?style=for-the-badge&logo=hyperledger&logoColor=white)
+![Version control](https://img.shields.io/badge/version%20control-000000?style=for-the-badge)
+
+![Version control](https://img.shields.io/badge/version%20control-000000?style=for-the-badge) ![Git](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)
+
+![User Interface](https://img.shields.io/badge/user%20interface-000000?style=for-the-badge) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
  
 ![Scikit-Learn](https://img.shields.io/badge/scikit_learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white), ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white) and ![Sentence Transformer](https://img.shields.io/badge/hyperledger-2F3134?style=for-the-badge&logo=hyperledger&logoColor=white) :arrow_right: ![Model creation](https://img.shields.io/badge/hyperledger-2F3134?style=for-the-badge&logo=hyperledger&logoColor=white)
 
@@ -52,17 +54,17 @@ Our goal is to develop a content-based recommender system that makes recommendat
 
 ## Download and view our report on this project here
 
-[![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/report/project_report_4.pdf?raw=true)
+Click here to [![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/report/project_report_4.pdf?raw=true)
 
 ## Download and view our PowerPoint for the project here
 
-Click here: [![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/project_presentation_4.pdf?raw=true)
+Click here to [![Click here to download the PDF](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/project_presentation_4.pdf?raw=true)
 
 ## Prerequisites for the local setup
 
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54): Should work with all python3 versions >= 3.9, but if you don't have python3 installed on your machine we recommend to install the same version:
+:information_source: Should work with all python 3 versions >= ![Python 3.9](https://img.shields.io/badge/python-3.9-white.svgs), but if you don't have python 3 installed on your machine we recommend to install the same version as we have 
 
-[![Python 3.11.2](https://img.shields.io/badge/python-3.11.2-blue.svg)](https://www.python.org/downloads/release/python-3112/)
+:snake: Click here to get to the download page of our python version: [![Python 3.11.2](https://img.shields.io/badge/python-3.11.2-blue.svg)](https://www.python.org/downloads/release/python-3112/)
 
 :computer: Also you need a RAM space capacity of at least 8GB, since models will be saved in memory ;-)
 
