@@ -1,5 +1,9 @@
 # DataWhispers Recommender System for Data Exploration DHBW course
 
+## Github Link
+
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)(https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW)
+
 ## Our Goal
 
 Our goal is to develop a content-based recommender system that makes recommendations for other similar films based on one or more films watched. In addition, the system is to be presented in a user-friendly interface.
@@ -37,13 +41,13 @@ Our goal is to develop a content-based recommender system that makes recommendat
    - All the directories
    - Our documentation, dependencies and files that should be ignored by git
 
-## Download and view our paper on this project here
+## Download and view our report on this project here
 
-[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/paper/Data-Exploration-DHBW-Mannheim.pdf?raw=true)
+[![Download as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/report/project_report_4.pdf?raw=true)
 
 ## Download and view our PowerPoint for the project here
 
-[![Download PP as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/Data-Exploration-Final.pdf?raw=true)
+[![Download PP as PDF Button](https://img.shields.io/badge/Download%20AS%20pdf-EF3939?style=for-the-badge&logo=adobeacrobatreader&logoColor=white&color=black&labelColor=ec1c24)](https://github.com/GermanPaul12/DataWhispers-Recommender-System-DHBW/data/presentation/project_presentation_4.pdf?raw=true)
 
 ## Prerequisites for the local setup
 
